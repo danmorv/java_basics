@@ -1,47 +1,69 @@
 package org.example.service;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.dto.NewsDTO;
+import org.example.entity.News;
+import org.example.repositoryes.NewsRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.TreeMap;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class NewsCRUDService implements CRUDService<NewsDTO> {
-    private final TreeMap<Integer, NewsDTO> listNews = new TreeMap<>();
+     private final NewsRepository repository;
+
 
     @Override
     public NewsDTO gerByID(Integer id) {
-        System.out.println("Get");
-        return listNews.get(id);
+        log.info("Get");
+        News news = repository.findById(id).orElseThrow();
+        return mapToDTO(news);
     }
 
     @Override
     public Collection<NewsDTO> getAll() {
-        System.out.println("All");
-        return listNews.values();
+        log.info("All");
+        return repository
+                .findAll()
+                .stream()
+                .map(NewsCRUDService::mapToDTO)
+                .toList();
     }
 
     @Override
     public void create(NewsDTO news) {
-        System.out.println("Create");
-        int id = (listNews.isEmpty() ? 0 : listNews.lastKey()) + 1;
-        news.setId(id);
-        listNews.put(id, news);
+        log.info("Create");
+        News news1 = mapToEntity(news);
+        repository.save(news1);
     }
 
     @Override
-    public void update(Integer id, NewsDTO news) {
-        System.out.println("Update");
-        news.setId(id);
-        listNews.put(id, news);
+    public void update(NewsDTO news) {
+        log.info("Update");
+        News news1 = mapToEntity(news);
+        repository.save(news1);
     }
 
     @Override
     public void delete(Integer id) {
-        System.out.println("Delete");
-        listNews.remove(id);
+        log.info("Delete");
+        repository.deleteById(id);
+    }
+
+    public static NewsDTO mapToDTO(News news){
+        NewsDTO newsDTO = new NewsDTO();
+        newsDTO.setId(news.getId());
+        newsDTO.setText(news.getText());
+        return newsDTO;
+    }
+    public static News mapToEntity(NewsDTO newsDTO) {
+        News news = new News();
+        news.setId(news.getId());
+        news.setText(news.getText());
+        return news;
+
     }
 }

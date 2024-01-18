@@ -9,7 +9,7 @@ public interface CRUDService<T> {
 
     void create(T news);
 
-    void update(Integer id, T news);
+    void update(T news);
 
     void delete(Integer id);
 }

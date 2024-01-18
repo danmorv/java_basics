@@ -32,7 +32,7 @@ public class NewsController {
 
     @PutMapping("/{id}")
     public void updateNews(@PathVariable Integer id, @RequestBody NewsDTO newsDTO) {
-        service.update(id, newsDTO);
+        service.update(newsDTO);
     }
 
     @DeleteMapping("/{id}")
