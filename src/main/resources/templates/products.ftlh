@@ -6,6 +6,10 @@
 <body>
 <h1>BUY SELL</h1><hr>
 <h4>Товары со всей России</h4>
+<from action="/" method="get">
+    Поиск по названию объявления: <input type="text" name="title"><br>
+    <input type="submit" value="Поиск"/>
+</from>
 <#list products as product>
 <div>
 <p>
