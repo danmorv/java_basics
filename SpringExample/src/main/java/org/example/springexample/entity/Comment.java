@@ -1,4 +1,4 @@
-package org.example.entity;
+package org.example.springexample.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -6,20 +6,20 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-
-@Entity
-@Table(name = "comment")
 @Getter
 @Setter
-public class News {
+@Entity
+@Table(name = "comment")
+public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "text")
     private String text;
-    @Column(name = "author")
-    private String author;
+    @JoinColumn(name = "author_id")
+    @ManyToOne
+    private Author author;
     @CreationTimestamp
     @Column(name = "time")
     private LocalDateTime time;

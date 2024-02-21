@@ -1,9 +1,0 @@
-spring:
-  datasource:
-    url: jdbs:postgresql://localhost:5433/skillbox
-    username: box
-    password: skill
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    show-sql: true
-    hibernate.ddl-auto: create
