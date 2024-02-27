@@ -13,7 +13,7 @@ public class NewsDto {
     private Integer id;
     private String title;
     private String text;
-    private LocalDateTime time;
+    private LocalDateTime time = LocalDateTime.now();
+    private Integer categoryId;
     private String categoryName;
-
 }

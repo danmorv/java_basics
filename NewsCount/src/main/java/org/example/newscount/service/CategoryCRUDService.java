@@ -21,6 +21,7 @@ public class CategoryCRUDService implements CRUDService<CategoryDto>{
 
     @Override
     public Collection<CategoryDto> getAll() {
+        log.info("Get category");
         return categoryRepository
                 .findAll()
                 .stream()
@@ -30,18 +31,21 @@ public class CategoryCRUDService implements CRUDService<CategoryDto>{
 
     @Override
     public void create(CategoryDto categoryDto) {
+        log.info("Create category");
         Category category = mapToEntity(categoryDto);
         categoryRepository.save(category);
     }
 
     @Override
     public void update(CategoryDto categoryDto) {
+        log.info("Update category");
         Category category = mapToEntity(categoryDto);
         categoryRepository.save(category);
     }
 
     @Override
     public void delete(Integer id) {
+        log.info("Delete category");
         categoryRepository.deleteById(id);
     }
     public static Category mapToEntity(CategoryDto categoryDto) {

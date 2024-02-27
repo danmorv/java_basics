@@ -20,7 +20,7 @@ public class News {
     private String title;
     @Column(name = "text")
     private String text;
-    @JoinColumn(name = "category_name")
+    @JoinColumn(name = "category_id")
     @ManyToOne
     private Category category;
     @CreationTimestamp

@@ -24,9 +24,10 @@ public class CategoryController {
     }
     @PutMapping("/{id}")
     public void update(@PathVariable Integer id, @RequestBody CategoryDto categoryDto) {
+        categoryDto.setId(id);
         categoryCRUDService.update(categoryDto);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping
     public void delete(@PathVariable Integer id) {
         categoryCRUDService.delete(id);
     }
