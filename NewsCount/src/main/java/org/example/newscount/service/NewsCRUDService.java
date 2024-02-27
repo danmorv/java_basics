@@ -1,5 +1,6 @@
 package org.example.newscount.service;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.newscount.dto.NewsDto;
@@ -7,6 +8,8 @@ import org.example.newscount.entity.News;
 import org.example.newscount.repositories.NewsRepositoy;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 @Service
 @RequiredArgsConstructor
@@ -53,7 +56,8 @@ public class NewsCRUDService implements CRUDService<NewsDto> {
         newsDto.setId(news.getId());
         newsDto.setText(news.getText());
         newsDto.setTitle(news.getTitle());
-        newsDto.setCategoryId(newsDto.getCategoryId());
+        newsDto.setCategoryName(newsDto.getCategoryName());
+
         return newsDto;
     }
     public static News mapToEntity(NewsDto newsDto) {
@@ -61,6 +65,7 @@ public class NewsCRUDService implements CRUDService<NewsDto> {
         news.setId(newsDto.getId());
         news.setText(newsDto.getText());
         news.setTitle(newsDto.getTitle());
+        news.setTime(LocalDateTime.now());
         return news;
     }
 }

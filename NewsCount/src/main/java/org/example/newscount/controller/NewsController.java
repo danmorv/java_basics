@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-@Controller
-@RequestMapping("/news")
+@RestController
+@RequestMapping("/newsList")
 public class NewsController {
     private final NewsCRUDService newsCRUDService;
     public NewsController(NewsCRUDService newsCRUDService) {

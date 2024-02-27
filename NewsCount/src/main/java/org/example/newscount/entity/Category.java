@@ -16,7 +16,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<News> commentList;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<News> newsList;
 
 }

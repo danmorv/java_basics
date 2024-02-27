@@ -20,9 +20,9 @@ public class News {
     private String title;
     @Column(name = "text")
     private String text;
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_name")
     @ManyToOne
-    private String categoty;
+    private Category category;
     @CreationTimestamp
     @Column(name = "time")
     private LocalDateTime time;
