@@ -1,23 +1,29 @@
 package org.example.fibonacci.controller;
 
-import org.example.fibonacci.services.FinabocciServices;
-import org.springframework.stereotype.Controller;
+import org.example.fibonacci.dto.FinabocciDto;
+import org.example.fibonacci.services.FinabocciCRUD;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/index")
-public class FinabocciController {
-    private final FinabocciServices finabocciServices;
+import java.util.Collection;
 
-    public FinabocciController(FinabocciServices finabocciServices) {
-        this.finabocciServices = finabocciServices;
+@RestController
+@RequestMapping(name = "index")
+public class FinabocciController {
+    private final FinabocciCRUD finabocciCRUD;
+
+    public FinabocciController(FinabocciCRUD finabocciCRUD) {
+        this.finabocciCRUD = finabocciCRUD;
     }
-    @PostMapping("/{index}")
-    public void createNumbers(@PathVariable Integer index) {
-        finabocciServices.create(index);
+    @GetMapping("/id")
+    public FinabocciDto getFinabocciById(@PathVariable Integer id) {
+        return finabocciCRUD.getById(id);
     }
-    @GetMapping("/")
-    public void getNumber() {
-        finabocciServices.getNumber();
+    @GetMapping
+    public Collection<FinabocciDto> getAll() {
+        return finabocciCRUD.getAll();
+    }
+    @PostMapping("/index")
+    public void create(FinabocciDto finabocciDto) {
+        finabocciCRUD.create(finabocciDto);
     }
 }

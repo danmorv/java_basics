@@ -1,18 +1,16 @@
 package org.example.fibonacci;
 
 public class FinabocciCalculator {
-    private int number = 1; //первое и второе число
-    public Long getValue(Integer index) {
-        long[] x = new long[index];
-        x[0] = number;
-        x[1] = number;
-        long value = 0;
-        for (int i = 2; i < x.length; i++) {
-            x[i] = x[i-2] + x[i-1];
+    public int number = 1; //первое и второе число
+
+    public int calculatNumber(Integer index) {
+        int[] result = new int[index];
+        result[0] = number;
+        result[1] = number;
+        for (int i = 2; i != result.length; i++) {
+            result[i] = result[i - 1] + result[i - 2];
         }
-        for (int i = 0; i < x.length; i++) {
-            value += x[i];
-        }
-        return value;
+        System.out.println(result[index - 1]);
+        return result[index - 1];
     }
 }

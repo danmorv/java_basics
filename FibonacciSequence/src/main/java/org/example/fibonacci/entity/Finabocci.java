@@ -4,10 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "finabocci")
+@Getter
+@Setter
 public class Finabocci {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,5 +15,5 @@ public class Finabocci {
     @Column(name = "index")
     private Integer index;
     @Column(name = "value")
-    private Long value;
+    private Integer value;
 }
