@@ -9,6 +9,7 @@ import org.example.fibonacci.repositories.FinabocciRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Optional;
 
 @Service
@@ -31,12 +32,14 @@ public class FinabocciCRUD implements FinabocciServices<FinabocciDto>{
     }
 
     @Override
-    public void create(FinabocciDto finabocciDto) {
+    public void create(Integer index) {
         log.info("Create");
         FinabocciCalculator calculator = new FinabocciCalculator();
-        finabocciDto.setValue(calculator.calculatNumber(finabocciDto.getIndex()));
-        Finabocci finabocci = mapToEntity(finabocciDto);
+        Finabocci finabocci = new Finabocci();
+        finabocci.setIndex(index);
+        finabocci.setValue(calculator.calculatNumber(index));
         repository.save(finabocci);
+        repository.toString();
     }
     public static FinabocciDto mapToDto(Finabocci finabocci) {
         FinabocciDto finabocciDto = new FinabocciDto();

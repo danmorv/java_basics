@@ -10,7 +10,6 @@ public class FinabocciCalculator {
         for (int i = 2; i != result.length; i++) {
             result[i] = result[i - 1] + result[i - 2];
         }
-        System.out.println(result[index - 1]);
         return result[index - 1];
     }
 }
